@@ -21,7 +21,12 @@ export default {
       <div v-for="(movie, index) in store.movies" :key="index">
         <h2 class="py-1">{{ movie.title }}</h2>
         <h3 class="py-1">Titolo Originale: {{ movie.original_title }}</h3>
-        <span>Lingua: {{ movie.original_language }}</span>
+        <span>Lingua:</span>
+        <img
+          :src="`flag/language-${movie.original_language}.svg`"
+          class="ms-2"
+        />
+
         <div>
           <h4>Voti:{{ movie.vote_average }}</h4>
         </div>
@@ -35,5 +40,10 @@ export default {
 main {
   background-color: $bg-primary;
   color: white;
+}
+img {
+  object-fit: contain;
+  height: 20px;
+  border-radius: 10px;
 }
 </style>

@@ -33,16 +33,24 @@ export default {
 <template>
   <header>
     <div>
-      <form class="fm-form d-flex al-item-cent" @submit.prevent role="search">
+      <form
+        class="fm-form d-flex justify-content-center align-items-center"
+        @submit.prevent
+        role="search"
+      >
         <input
-          class="form-control me-3"
+          class="form-control me-3 mt-5"
           type="search"
           placeholder="Cerca un film o una serie Tv"
           aria-label="Search"
           v-model="store.queryString"
           @keyup.enter="getApi"
         />
-        <button class="btn me-5 text-bg-light" @click="getApi" type="search">
+        <button
+          class="btn me-5 mt-5 text-bg-light"
+          @click="getApi"
+          type="search"
+        >
           Cerca
         </button>
       </form>
