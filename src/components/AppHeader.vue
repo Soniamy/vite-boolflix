@@ -23,7 +23,7 @@ export default {
         })
         .then((result) => {
           store.movies = result.data.results;
-          console.log(store.movie);
+          console.log(store.movies);
         });
     },
   },
@@ -54,7 +54,7 @@ export default {
 @use '../assets/scss/partials/variables.scss' as *;
 header {
   background-color: rgb(0, 0, 0);
-  height: 300px;
+  height: 150px;
   .fm-form {
     .form-control {
       width: 250px;

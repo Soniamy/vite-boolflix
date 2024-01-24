@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @searchFilm="getApi" />
+  <AppHeader />
 
   <AppMain />
 
