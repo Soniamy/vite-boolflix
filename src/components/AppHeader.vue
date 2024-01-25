@@ -54,14 +54,17 @@ export default {
 
 <template>
   <header>
-    <div>
+    <div class="d-flex">
+      <div class="container-fluid d-flex al-item-cent">
+        <img src="../../public/boolflix-logo.png" alt="Logo" />
+      </div>
       <form
         class="fm-form d-flex justify-content-center align-items-center"
         @submit.prevent
         role="search"
       >
         <input
-          class="form-control me-3 mt-5"
+          class="form-control me-3"
           type="search"
           placeholder="Cerca un film o una serie Tv"
           aria-label="Search"
@@ -84,10 +87,16 @@ export default {
 @use '../assets/scss/partials/variables.scss' as *;
 header {
   background-color: rgb(0, 0, 0);
-  height: 150px;
+  height: 100px;
   .fm-form {
     .form-control {
       width: 250px;
+    }
+  }
+  .container-fluid {
+    img {
+      width: 150px;
+      margin: 1.5rem 0.5rem;
     }
   }
 }
