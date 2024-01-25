@@ -9,7 +9,7 @@ export default {
   },
   methods: {
     // Richiamo API per Film//
-    getMovie() {
+    getMovies() {
       axios
         .get(store.apiUrl + '/search/movie', {
           headers: {
@@ -44,8 +44,9 @@ export default {
           console.log(store.series);
         });
     },
+
     getAll() {
-      this.getMovie();
+      this.getMovies();
       this.getSeries();
     },
   },

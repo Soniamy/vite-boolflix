@@ -5,7 +5,6 @@ export default {
   data() {
     return {
       store,
-      video: '',
     };
   },
   components: {
@@ -25,6 +24,7 @@ export default {
             v-for="(movie, index) in store.movies"
             :key="index"
             :video="movie"
+            :type="'movie'"
           />
         </div>
       </div>
@@ -36,6 +36,7 @@ export default {
             v-for="(serie, index) in store.series"
             :key="index"
             :video="serie"
+            :type="'serie'"
           />
         </div>
       </div>

@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 import { store } from './../store';
 export default {
   name: 'Card',
@@ -9,21 +10,43 @@ export default {
   },
   props: {
     video: Object,
+    type: String,
   },
   methods: {
     voteAverage(video) {
       return Math.ceil(video.vote_average / 2);
+    },
+    //Chiamata API per i generi movies
+    getGenres() {
+      axios
+        .get(store.apiUrl + '/' + this.type + '/' + this.video.id, {
+          headers: {
+            accept: 'application/json',
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjQzZmM1ZGYwMDVmZDkyZWEyYjZiNmM1MTVmNmI5OSIsInN1YiI6IjY1YjBmMjRjOGMzMTU5MDE1MjMyMDdhOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.feYBx1PJsz06AJiUl_dndWYUdF_niAlJHAH4EA6hkp0',
+          },
+        })
+        .then((result) => {
+          this.video['generi'] = result.data.genres;
+        });
     },
   },
 };
 </script>
 
 <template>
-  <div class="wrapper mb-4">
+  <div class="wrapper mb-4" @mouseenter="getGenres">
     <div class="fm-card">
       <div class="front">
         <img
+          v-if="video.poster_path != null"
           :src="`https://image.tmdb.org/t/p/w342${video.poster_path}}`"
+          :alt="original_title"
+          :title="original_title"
+        />
+        <img
+          v-else
+          src="../../public/no-Image-Placeholder.svg.png"
           :alt="original_title"
           :title="original_title"
         />
@@ -51,6 +74,14 @@ export default {
             <h4>
               {{ video.overview }}
             </h4>
+            <div class="more-info">
+              <p>
+                Generi:
+                <span v-for="generi in this.video.generi" :key="generi">
+                  {{ generi.name }} ,
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -89,7 +120,7 @@ export default {
   background: #fff;
 }
 .info {
-  padding-top: 25%;
+  padding: 10px;
 }
 
 .fm-card {
@@ -100,8 +131,9 @@ export default {
 
   img {
     object-fit: contain;
-    height: 450px;
+    height: 420px;
     border-radius: 10px;
+    background-color: #f2f2f2;
   }
   .cont-info {
     background-color: black;
@@ -111,16 +143,17 @@ export default {
       text-align: center;
 
       h1 {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         color: red;
         text-align: center;
+        font-weight: bolder;
       }
 
       h2 {
         font-size: 1rem;
       }
       h4 {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
       }
 
       img {
