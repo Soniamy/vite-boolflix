@@ -10,7 +10,11 @@ export default {
       vote_average: '',
     };
   },
-  methods: {},
+  methods: {
+    voteAverage(video) {
+      return Math.ceil(video.vote_average / 2);
+    },
+  },
 };
 </script>
 
@@ -34,7 +38,7 @@ export default {
           class="ms-2"
         />
         <div class="d-flex">
-          <h4>Voti:{{ movie.vote_average }}</h4>
+          <h4>Voti: {{ voteAverage(movie) }}</h4>
           <div class="ms-3">
             <span><i class="fa-solid fa-star" style="color: #f2ca28"></i></span>
           </div>
@@ -59,7 +63,7 @@ export default {
         />
 
         <div>
-          <h4>Voti:{{ serie.vote_average }}</h4>
+          <h4>Voti:{{ voteAverage(serie) }}</h4>
         </div>
       </div>
     </div>
