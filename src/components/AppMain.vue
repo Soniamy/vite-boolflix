@@ -1,80 +1,42 @@
 <script>
 import { store } from './../store';
+import Card from './Card.vue';
 export default {
   data() {
     return {
       store,
-      title: '',
-      original_title: '',
-      original_language: '',
-      vote_average: '',
+      video: '',
     };
   },
-  methods: {
-    voteAverage(video) {
-      return Math.ceil(video.vote_average / 2);
-    },
+  components: {
+    Card,
   },
 };
 </script>
 
 <template>
   <main>
-    <div>
-      <h2 class="py-3">Film</h2>
-      <div v-for="(movie, index) in store.movies" :key="index">
-        <div class="front">
-          <img
-            :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
-            :alt="movie.original_title"
-            :title="movie.original_title"
+    <div class="fmcontainer">
+      <div class="container-fluid">
+        <h2 class="py-3">Film</h2>
+        <hr />
+        <div class="row row-cols-4 pt-2">
+          <Card
+            v-for="(movie, index) in store.movies"
+            :key="index"
+            :video="movie"
           />
-        </div>
-        <h2 class="py-1">{{ movie.title }}</h2>
-        <h3 class="py-1">Titolo Originale: {{ movie.original_title }}</h3>
-        <span>Lingua:</span>
-        <img
-          :src="`flag/language-${movie.original_language}.svg`"
-          class="ms-2"
-        />
-        <div class="d-flex">
-          <h4>Voti: {{ voteAverage(movie) }}</h4>
-          <div class="ms-3">
-            <span v-for="index in voteAverage(movie)" :key="index"
-              ><i class="fa-solid fa-star" style="color: #f2ca28"></i
-            ></span>
-            <span v-for="index in 5 - voteAverage(movie)" :key="index"
-              ><i class="fa-regular fa-star"></i>
-            </span>
-          </div>
         </div>
       </div>
-      <h2 class="py-3">Serie Tv</h2>
-      <div v-for="(serie, index) in store.series" :key="index">
-        <div class="front">
-          <img
-            :src="`https://image.tmdb.org/t/p/w500${serie.poster_path}`"
-            :alt="original_title"
-            :title="original_title"
+      <div class="container-fluid">
+        <h2 class="py-3">Serie Tv</h2>
+        <hr />
+        <div class="row row-cols-4">
+          <Card
+            v-for="(serie, index) in store.series"
+            :key="index"
+            :video="serie"
           />
-        </div>
-
-        <h2 class="py-1">{{ serie.name }}</h2>
-        <h3 class="py-1">Titolo Originale: {{ serie.original_title }}</h3>
-        <span>Lingua:</span>
-        <img
-          :src="`flag/language-${serie.original_language}.svg`"
-          class="ms-2"
-        />
-
-        <div>
-          <h4>Voti:{{ voteAverage(serie) }}</h4>
-          <span v-for="index in voteAverage(serie)" :key="index"
-            ><i class="fa-solid fa-star" style="color: #f2ca28"></i
-          ></span>
-          <span v-for="index in 5 - voteAverage(serie)" :key="index"
-            ><i class="fa-regular fa-star"></i>
-          </span>
         </div>
       </div>
     </div>
@@ -86,19 +48,5 @@ export default {
 main {
   background-color: $bg-primary;
   color: white;
-}
-img {
-  object-fit: contain;
-  height: 20px;
-  border-radius: 10px;
-}
-.front {
-  height: 100%;
-
-  img {
-    object-fit: contain;
-    height: 450px;
-    border-radius: 10px;
-  }
 }
 </style>

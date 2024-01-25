@@ -71,11 +71,7 @@ export default {
           v-model="store.queryString"
           @keyup.enter="getAll"
         />
-        <button
-          class="btn me-5 mt-5 text-bg-light"
-          @click="getAll"
-          type="search"
-        >
+        <button class="btn me-5 text-bg-light" @click="getAll" type="search">
           Cerca
         </button>
       </form>
