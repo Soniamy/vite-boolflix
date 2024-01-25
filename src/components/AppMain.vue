@@ -40,7 +40,12 @@ export default {
         <div class="d-flex">
           <h4>Voti: {{ voteAverage(movie) }}</h4>
           <div class="ms-3">
-            <span><i class="fa-solid fa-star" style="color: #f2ca28"></i></span>
+            <span v-for="index in voteAverage(movie)" :key="index"
+              ><i class="fa-solid fa-star" style="color: #f2ca28"></i
+            ></span>
+            <span v-for="index in 5 - voteAverage(movie)" :key="index"
+              ><i class="fa-regular fa-star"></i>
+            </span>
           </div>
         </div>
       </div>
@@ -64,6 +69,12 @@ export default {
 
         <div>
           <h4>Voti:{{ voteAverage(serie) }}</h4>
+          <span v-for="index in voteAverage(serie)" :key="index"
+            ><i class="fa-solid fa-star" style="color: #f2ca28"></i
+          ></span>
+          <span v-for="index in 5 - voteAverage(serie)" :key="index"
+            ><i class="fa-regular fa-star"></i>
+          </span>
         </div>
       </div>
     </div>
