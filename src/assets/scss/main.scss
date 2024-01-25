@@ -2,6 +2,11 @@
 @use 'partials/mixins.scss' as *;
 // Import all of Bootstrap's CSS
 @import 'bootstrap/scss/bootstrap';
+// importing core styling file
+@import '../fontawesome-free-6.5.1-web/scss/fontawesome.scss';
+
+// our project needs Classic Solid, Brands, and Sharp Solid
+@import '../fontawesome-free-6.5.1-web/scss/solid.scss';
 
 h1 {
   text-align: center;

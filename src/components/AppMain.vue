@@ -33,8 +33,11 @@ export default {
           :src="`flag/language-${movie.original_language}.svg`"
           class="ms-2"
         />
-        <div>
+        <div class="d-flex">
           <h4>Voti:{{ movie.vote_average }}</h4>
+          <div class="ms-3">
+            <span><i class="fa-solid fa-star" style="color: #f2ca28"></i></span>
+          </div>
         </div>
       </div>
       <h2 class="py-3">Serie Tv</h2>
